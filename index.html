@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
+<title>Insane Festival 2026 — Clashfinder simple</title>
+<meta name="theme-color" content="#21114f" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Insane 2026" />
+<style>
+:root {
+  --bg:#f7f8fc;
+  --ink:#101828;
+  --muted:#667085;
+  --purple:#21114f;
+  --grid:#d8e0ec;
+  --grid2:#edf1f7;
+  --safeBottom:env(safe-area-inset-bottom,0px);
+}
+* { box-sizing:border-box; }
+html, body { height:100%; }
+body {
+  margin:0;
+  overflow:hidden;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+.app { height:100dvh; display:flex; flex-direction:column; }
+.topbar {
+  flex:0 0 auto;
+  background:linear-gradient(180deg,#25105d 0%,#1e104a 100%);
+  color:#fff;
+  padding:10px 10px 9px;
+  box-shadow:0 8px 24px rgba(15,23,42,.22);
+  z-index:20;
+}
+.titleLine { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+h1 {
+  margin:0;
+  font-size:clamp(18px,5.2vw,27px);
+  line-height:1.05;
+  font-weight:950;
+  letter-spacing:.01em;
+}
+.sub {
+  margin-top:4px;
+  font-size:12px;
+  line-height:1.25;
+  color:#ddd6fe;
+}
+.favToggle {
+  flex:0 0 auto;
+  border:1px solid rgba(255,255,255,.45);
+  background:rgba(255,255,255,.11);
+  color:#fff;
+  border-radius:999px;
+  padding:8px 10px;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.favToggle.active { background:#fff; color:#21114f; }
+.days {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:6px;
+  margin-top:9px;
+}
+.dayBtn {
+  border:0;
+  border-radius:999px;
+  padding:9px 5px;
+  font:inherit;
+  font-size:clamp(11px,3.5vw,15px);
+  line-height:1;
+  font-weight:950;
+  color:#24105a;
+  background:#ede9fe;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.dayBtn.active { background:#fff; color:#1e104a; box-shadow:0 1px 0 rgba(255,255,255,.65) inset; }
+.viewport {
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(124,58,237,.07), transparent 34%),
+    radial-gradient(circle at 88% 0%, rgba(59,130,246,.07), transparent 34%),
+    #f7f8fc;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-y pinch-zoom;
+}
+.stageHeaders {
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:grid;
+  gap:5px;
+  align-items:end;
+  padding:8px 4px 0;
+  background:linear-gradient(180deg,rgba(247,248,252,1) 0%,rgba(247,248,252,.93) 80%,rgba(247,248,252,0) 100%);
+}
+.timeHead { height:30px; }
+.stageHead {
+  height:30px;
+  border-radius:10px 10px 0 0;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:clamp(9px,2.8vw,14px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.015em;
+  box-shadow:0 1px 5px rgba(15,23,42,.16);
+  overflow:hidden;
+}
+.timeline {
+  position:relative;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+.stageBg {
+  position:absolute;
+  top:0;
+  border:1px solid #cbd5e1;
+  border-top:0;
+  border-radius:0 0 8px 8px;
+  background:rgba(255,255,255,.66);
+}
+.hourLine,.halfLine { position:absolute; height:1px; background:var(--grid); }
+.hourLine { height:2px; background:#cbd5e1; }
+.halfLine { background:var(--grid2); }
+.timeLabel {
+  position:absolute;
+  text-align:right;
+  transform:translateY(-10px);
+  font-size:clamp(11px,3.2vw,15px);
+  font-weight:900;
+  color:#344054;
+  letter-spacing:-.03em;
+}
+.event {
+  position:absolute;
+  border:1.7px solid;
+  border-radius:8px;
+  padding:4px 4px 3px;
+  overflow:hidden;
+  box-shadow:0 1px 3px rgba(15,23,42,.08);
+}
+.event .time {
+  font-weight:950;
+  line-height:1;
+  color:#0f172a;
+  white-space:nowrap;
+  letter-spacing:-.04em;
+}
+.event .artist {
+  margin-top:2px;
+  font-weight:1000;
+  line-height:.96;
+  letter-spacing:-.055em;
+  color:#0b1020;
+  overflow-wrap:anywhere;
+}
+.event .style {
+  margin-top:3px;
+  color:#344054;
+  line-height:1.04;
+  overflow-wrap:anywhere;
+}
+.event.fav {
+  box-shadow:0 0 0 3px rgba(250,204,21,.9), 0 5px 14px rgba(15,23,42,.16);
+}
+.event.fav::after {
+  content:'★';
+  position:absolute;
+  right:4px;
+  top:3px;
+  font-size:10px;
+  color:#ca8a04;
+  text-shadow:0 1px 0 #fff;
+}
+.emptyMsg {
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(330px,82vw);
+  text-align:center;
+  background:#fff;
+  border:1px solid #e4e7ec;
+  border-radius:16px;
+  padding:14px 16px;
+  box-shadow:0 8px 24px rgba(15,23,42,.09);
+  color:#344054;
+  font-size:14px;
+  line-height:1.35;
+  font-weight:700;
+}
+.footer {
+  padding:8px 10px calc(10px + var(--safeBottom));
+  color:#667085;
+  font-size:11px;
+  line-height:1.25;
+  border-top:1px solid #e4e7ec;
+  background:#f8fafc;
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="titleLine">
+      <div>
+        <h1>INSANE FESTIVAL 2026</h1>
+      </div>
+      <button class="favToggle" id="favOnlyBtn" type="button">★ Favoris only</button>
+    </div>
+    <nav class="days" id="days"></nav>
+  </header>
+  <main class="viewport" id="viewport">
+    <div class="stageHeaders" id="stageHeaders"></div>
+    <div class="timeline" id="timeline"></div>
+    <div class="footer">Les scènes restent toujours séparées en colonnes. Tap sur un set pour ajouter/retirer un favori.</div>
+  </main>
+</div>
+<script>
+const DATA = {"2026-05-14":{"title":"JEUDI 14 MAI","stages":{"Mirage":[{"start":"16:00","end":"17:30","artist":"KICHTA","style":"hard techno","smin":960,"emin":1050},{"start":"17:30","end":"19:00","artist":"2HOT2PLAY","style":"hard techno / rave","smin":1050,"emin":1140},{"start":"19:00","end":"20:30","artist":"MAJES","style":"hard techno","smin":1140,"emin":1230},{"start":"20:30","end":"22:00","artist":"VORTEK’S B2B BYORN","style":"hardtek / hard dance","smin":1230,"emin":1320},{"start":"22:00","end":"23:00","artist":"TOXIC MACHINERY","style":"industrial hardcore / hard dance","smin":1320,"emin":1380},{"start":"23:00","end":"00:30","artist":"VIEZE ASBAK","style":"hard techno / gabber","smin":1380,"emin":1470},{"start":"00:30","end":"01:30","artist":"HOLY PRIEST","style":"industrial hard techno","smin":1470,"emin":1530},{"start":"01:30","end":"02:00","artist":"SECRET B2B","style":"hard techno","smin":1530,"emin":1560},{"start":"02:00","end":"03:00","artist":"LIL TEXAS","style":"uptempo hardcore","smin":1560,"emin":1620},{"start":"03:00","end":"04:00","artist":"LEKKERFACES","style":"hard techno / hardcore","smin":1620,"emin":1680}],"Cloud":[{"start":"16:00","end":"16:45","artist":"LE F","style":"house / mélodique","smin":960,"emin":1005},{"start":"16:45","end":"17:30","artist":"LOWBASS","style":"bass house / electro","smin":1005,"emin":1050},{"start":"17:30","end":"18:30","artist":"BARON","style":"house / electro","smin":1050,"emin":1110},{"start":"18:30","end":"19:30","artist":"SOLERE","style":"electro-pop / house","smin":1110,"emin":1170},{"start":"19:30","end":"21:00","artist":"YANN MULLER","style":"melodic house / pop edits","smin":1170,"emin":1260},{"start":"21:00","end":"22:15","artist":"AMOR","style":"electro / house","smin":1260,"emin":1335},{"start":"22:15","end":"23:30","artist":"PETIT BISCUIT","style":"electro-indie / tropical house","smin":1335,"emin":1410},{"start":"23:30","end":"01:00","artist":"UPSILONE","style":"melodic house / electronica","smin":1410,"emin":1500},{"start":"01:00","end":"02:30","artist":"MANDRAGORA","style":"psytrance / futureprog","smin":1500,"emin":1590},{"start":"02:30","end":"04:00","artist":"BENNETT","style":"techno / trance","smin":1590,"emin":1680}],"ALT F4":[{"start":"12:00","end":"12:45","artist":"KAVALEUR","style":"hard techno","smin":720,"emin":765},{"start":"12:45","end":"13:30","artist":"LA TORGNOLE","style":"raw / hard techno","smin":765,"emin":810},{"start":"13:30","end":"14:15","artist":"REDLAIR","style":"hard techno","smin":810,"emin":855},{"start":"14:15","end":"15:15","artist":"EYES","style":"hard techno","smin":855,"emin":915},{"start":"15:15","end":"16:00","artist":"MEDUSA","style":"hard techno","smin":915,"emin":960},{"start":"16:15","end":"18:00","artist":"HORTENSE DE BEAUHARNAIS F2F GONZI","style":"hard techno / neo-rave","smin":975,"emin":1080},{"start":"18:00","end":"19:45","artist":"RELAJADITA F2F DVAID","style":"hard techno / trance","smin":1080,"emin":1185},{"start":"19:45","end":"21:30","artist":"ASKM F2F TEKSA","style":"hardtek / tribe","smin":1185,"emin":1290},{"start":"21:30","end":"22:45","artist":"NURE F2F VLB","style":"hard techno / trance","smin":1290,"emin":1365},{"start":"22:45","end":"00:30","artist":"CARAVEL F2F UPHORIA","style":"hard techno / rave","smin":1365,"emin":1470},{"start":"00:30","end":"02:15","artist":"JAYRON F2F RUBIØ","style":"hard techno","smin":1470,"emin":1575},{"start":"02:15","end":"04:00","artist":"JO3Y3T F2F SANTØS","style":"hard techno","smin":1575,"emin":1680}],"Technobus":[{"start":"16:00","end":"17:00","artist":"OCTO ONE","style":"hard techno","smin":960,"emin":1020},{"start":"17:00","end":"18:00","artist":"FRAÎCHE","style":"techno / rave","smin":1020,"emin":1080},{"start":"18:00","end":"19:00","artist":"HEARTREAVER B2B MIDO","style":"hard techno","smin":1080,"emin":1140},{"start":"19:00","end":"20:00","artist":"ANTHONY CAPALDI","style":"techno","smin":1140,"emin":1200},{"start":"20:00","end":"21:00","artist":"DAVID BOUTS","style":"techno","smin":1200,"emin":1260},{"start":"21:00","end":"22:00","artist":"MELINA","style":"techno","smin":1260,"emin":1320},{"start":"22:00","end":"23:00","artist":"ANDUJ B2B PAULSKYE","style":"techno","smin":1320,"emin":1380},{"start":"23:00","end":"00:00","artist":"TWIST","style":"techno","smin":1380,"emin":1440},{"start":"00:00","end":"01:00","artist":"PROST B2B ZEP","style":"techno","smin":1440,"emin":1500},{"start":"01:00","end":"02:00","artist":"EVÄNDER B2B MAY-LI","style":"hard techno","smin":1500,"emin":1560},{"start":"02:00","end":"03:00","artist":"NOYSE","style":"hard techno / rave","smin":1560,"emin":1620},{"start":"03:00","end":"04:00","artist":"BLAKEYS B2B BLASTY","style":"hard techno","smin":1620,"emin":1680}]}},"2026-05-15":{"title":"VENDREDI 15 MAI","stages":{"Mirage":[{"start":"16:00","end":"16:45","artist":"ARDENTE","style":"hard techno","smin":960,"emin":1005},{"start":"16:45","end":"17:30","artist":"CHASM","style":"hard techno","smin":1005,"emin":1050},{"start":"17:30","end":"18:30","artist":"KX CHR","style":"hard techno","smin":1050,"emin":1110},{"start":"18:30","end":"20:00","artist":"NOTMYTYPE","style":"hard techno","smin":1110,"emin":1200},{"start":"20:00","end":"21:00","artist":"NICOLAS JULIAN","style":"hard techno / trance","smin":1200,"emin":1260},{"start":"21:00","end":"22:00","artist":"ECZODIA","style":"hard techno","smin":1260,"emin":1320},{"start":"22:00","end":"23:00","artist":"KARAH","style":"hard techno","smin":1320,"emin":1380},{"start":"23:00","end":"00:30","artist":"RESTRICTED","style":"hard dance","smin":1380,"emin":1470},{"start":"00:30","end":"01:30","artist":"KRUELTY","style":"industrial hard techno","smin":1470,"emin":1530},{"start":"01:30","end":"03:00","artist":"REINIER ZONNEVELD B2B ANGERFIST","style":"live techno / hardcore","smin":1530,"emin":1620},{"start":"03:00","end":"04:00","artist":"ROOLER","style":"rawstyle / hard dance","smin":1620,"emin":1680}],"Cloud":[{"start":"16:00","end":"17:00","artist":"GA4SY","style":"house / electro","smin":960,"emin":1020},{"start":"17:00","end":"18:00","artist":"AMR","style":"house","smin":1020,"emin":1080},{"start":"18:00","end":"19:30","artist":"TARS","style":"bass house / electro","smin":1080,"emin":1170},{"start":"19:30","end":"20:30","artist":"DJ_DAVE","style":"house / club","smin":1170,"emin":1230},{"start":"20:30","end":"22:00","artist":"FJUSHA","style":"house / melodic","smin":1230,"emin":1320},{"start":"22:00","end":"23:00","artist":"CARA ELIZABETH B2B ARMAN JOHN","style":"techno / trance","smin":1320,"emin":1380},{"start":"23:00","end":"00:30","artist":"HORTENSE DE BEAUHARNAIS","style":"hard techno / neo-rave","smin":1380,"emin":1470},{"start":"00:30","end":"02:00","artist":"DARIA KOLOSOVA","style":"hard techno / industrial","smin":1470,"emin":1560},{"start":"02:00","end":"04:00","artist":"LUCID","style":"hard techno","smin":1560,"emin":1680}],"ALT F4":[{"start":"12:00","end":"13:00","artist":"VERY BAD KICKS","style":"drum & bass","smin":720,"emin":780},{"start":"13:00","end":"14:00","artist":"DICE B2B KØ:LAB","style":"drum & bass","smin":780,"emin":840},{"start":"14:00","end":"15:00","artist":"ACIDPACH B2B L'ART CÈNE","style":"drum & bass","smin":840,"emin":900},{"start":"15:00","end":"16:00","artist":"VERNEX B2B SANDY WAREZ","style":"drum & bass","smin":900,"emin":960},{"start":"16:00","end":"17:00","artist":"OBSES","style":"drum & bass","smin":960,"emin":1020},{"start":"17:00","end":"18:00","artist":"KLINICAL","style":"neurofunk / drum & bass","smin":1020,"emin":1080},{"start":"18:00","end":"19:00","artist":"VISAGES","style":"deep drum & bass","smin":1080,"emin":1140},{"start":"19:00","end":"20:00","artist":"THE CARACAL PROJECT","style":"drum & bass","smin":1140,"emin":1200},{"start":"20:00","end":"21:00","artist":"IMANU","style":"bass music / drum & bass","smin":1200,"emin":1260},{"start":"21:00","end":"22:00","artist":"SKANTIA","style":"drum & bass","smin":1260,"emin":1320},{"start":"22:00","end":"23:00","artist":"VICI","style":"drum & bass","smin":1320,"emin":1380},{"start":"23:00","end":"00:00","artist":"THEEZER","style":"drum & bass","smin":1380,"emin":1440}],"Technobus":[{"start":"16:00","end":"17:00","artist":"DLN","style":"techno","smin":960,"emin":1020},{"start":"17:00","end":"18:00","artist":"JEJEJE","style":"techno","smin":1020,"emin":1080},{"start":"18:00","end":"19:30","artist":"DJ PRINCESSE B2B EL SANTU","style":"techno / rave","smin":1080,"emin":1170},{"start":"19:30","end":"20:30","artist":"RV","style":"techno","smin":1170,"emin":1230},{"start":"20:30","end":"21:30","artist":"KEUSS","style":"techno","smin":1230,"emin":1290},{"start":"21:30","end":"22:30","artist":"LA TORGNOLE","style":"raw / hard techno","smin":1290,"emin":1350},{"start":"22:30","end":"23:30","artist":"KLÖSS","style":"techno","smin":1350,"emin":1410},{"start":"23:30","end":"01:00","artist":"NOYSE","style":"hard techno / rave","smin":1410,"emin":1500},{"start":"01:00","end":"02:00","artist":"RESTRICTED","style":"hard dance","smin":1500,"emin":1560},{"start":"02:00","end":"03:00","artist":"ASKM","style":"hardtek / tribe","smin":1560,"emin":1620},{"start":"03:00","end":"04:00","artist":"AFTERDEATH","style":"hard techno","smin":1620,"emin":1680}]}},"2026-05-16":{"title":"SAMEDI 16 MAI","stages":{"Mirage":[{"start":"16:00","end":"17:00","artist":"RAVE CREW","style":"hard techno","smin":960,"emin":1020},{"start":"17:00","end":"18:00","artist":"ZORZA","style":"hard techno","smin":1020,"emin":1080},{"start":"18:00","end":"19:00","artist":"SAMUEL MORIERO","style":"hard techno","smin":1080,"emin":1140},{"start":"19:00","end":"20:00","artist":"LE WANSKI B2B SKÖNE","style":"hard techno / rave","smin":1140,"emin":1200},{"start":"20:00","end":"21:00","artist":"ZAPRAVKA","style":"hard techno","smin":1200,"emin":1260},{"start":"21:00","end":"22:00","artist":"TODIEFOR","style":"hard techno","smin":1260,"emin":1320},{"start":"22:00","end":"23:00","artist":"KLOFAMA","style":"hard techno","smin":1320,"emin":1380},{"start":"23:00","end":"00:00","artist":"SLVL B2B USH","style":"hard techno","smin":1380,"emin":1440},{"start":"00:00","end":"01:00","artist":"RDØ","style":"hard techno","smin":1440,"emin":1500},{"start":"01:00","end":"02:00","artist":"KROWDEXX","style":"uptempo / hardcore","smin":1500,"emin":1560},{"start":"02:00","end":"03:00","artist":"BILLX","style":"tribe / hardtek","smin":1560,"emin":1620},{"start":"03:00","end":"04:00","artist":"GPF B2B UNICORN ON K","style":"uptempo / hardcore","smin":1620,"emin":1680}],"Cloud":[{"start":"16:00","end":"16:45","artist":"ROGS","style":"house / electro","smin":960,"emin":1005},{"start":"16:45","end":"17:30","artist":"NOOPS","style":"house / electro","smin":1005,"emin":1050},{"start":"17:45","end":"18:45","artist":"FLINS","style":"house / melodic","smin":1065,"emin":1125},{"start":"19:00","end":"20:00","artist":"CLÉMENT MATTRAT","style":"house / melodic","smin":1140,"emin":1200},{"start":"20:00","end":"21:30","artist":"JACK OLLINS","style":"house / indie dance","smin":1200,"emin":1290},{"start":"21:30","end":"23:00","artist":"TIGERHEAD","style":"electro / house","smin":1290,"emin":1380},{"start":"23:00","end":"00:30","artist":"TWO DOTS","style":"electro / melodic","smin":1380,"emin":1470},{"start":"00:30","end":"02:00","artist":"ASCENDANT VIERGE","style":"electro / trance pop","smin":1470,"emin":1560},{"start":"02:00","end":"03:00","artist":"EVIL GRIMACE","style":"trance / techno","smin":1560,"emin":1620},{"start":"03:00","end":"04:00","artist":"ASKM","style":"hardtek / tribe","smin":1620,"emin":1680}],"ALT F4":[{"start":"12:00","end":"13:00","artist":"EVÄNDER B2B BLASTY","style":"hard techno","smin":720,"emin":780},{"start":"13:00","end":"14:00","artist":"SORAÄ","style":"hard techno","smin":780,"emin":840},{"start":"14:00","end":"15:00","artist":"FIIKRA B2B OTAH","style":"hard techno","smin":840,"emin":900},{"start":"15:00","end":"16:00","artist":"PINOTELLO","style":"bass music","smin":900,"emin":960},{"start":"16:00","end":"17:00","artist":"C-JOO B2B DNA","style":"bass music","smin":960,"emin":1020},{"start":"17:00","end":"18:00","artist":"KARA","style":"bass music","smin":1020,"emin":1080},{"start":"18:00","end":"19:00","artist":"SYNERGY","style":"drum & bass","smin":1080,"emin":1140},{"start":"19:00","end":"20:00","artist":"[IVY]","style":"drum & bass","smin":1140,"emin":1200},{"start":"20:00","end":"21:00","artist":"BASSTRIPPER","style":"drum & bass","smin":1200,"emin":1260},{"start":"21:00","end":"22:00","artist":"SOTA","style":"drum & bass","smin":1260,"emin":1320},{"start":"22:00","end":"23:00","artist":"YOUPHORIA","style":"drum & bass","smin":1320,"emin":1380},{"start":"23:00","end":"00:00","artist":"ZOREL","style":"drum & bass","smin":1380,"emin":1440}],"Technobus":[{"start":"16:00","end":"17:00","artist":"NOYSE","style":"hard techno / rave","smin":960,"emin":1020},{"start":"17:00","end":"19:00","artist":"NEXØS","style":"hard techno","smin":1020,"emin":1140},{"start":"19:00","end":"20:30","artist":"KSLTECH","style":"hard techno","smin":1140,"emin":1230},{"start":"20:30","end":"21:30","artist":"SLACKREB","style":"hard techno","smin":1230,"emin":1290},{"start":"21:30","end":"23:00","artist":"BØDRU B2B FURIOUS","style":"hard techno","smin":1290,"emin":1380},{"start":"23:00","end":"00:30","artist":"DISRUPT TCHAÏ B2B VINZZ","style":"hard techno / rave","smin":1380,"emin":1470},{"start":"00:30","end":"02:00","artist":"ISALINE","style":"techno","smin":1470,"emin":1560},{"start":"02:00","end":"03:00","artist":"LEARDCORE","style":"hardcore","smin":1560,"emin":1620},{"start":"03:00","end":"04:00","artist":"SERGASTEK","style":"hard techno","smin":1620,"emin":1680}]}}};
+const STAGES = ["Mirage", "Cloud", "ALT F4", "Technobus"];
+const COLORS = {
+  "Mirage": { header:"#7E22CE", fill:"#F4E8FF", border:"#9333EA" },
+  "Cloud": { header:"#2563EB", fill:"#EAF3FF", border:"#3B82F6" },
+  "ALT F4": { header:"#16A34A", fill:"#E9FBEF", border:"#22A665" },
+  "Technobus": { header:"#EA7600", fill:"#FFF3D9", border:"#F59E0B" }
+};
+const startMin = 12*60, endMin = 28*60;
+const favKey = 'insane2026:favs:v2';
+const favOnlyKey = 'insane2026:favOnly:v1';
+const dayKey = 'insane2026:day:v1';
+let favs = safeJSON(localStorage.getItem(favKey), []);
+let favOnly = localStorage.getItem(favOnlyKey) === '1';
+let currentDay = localStorage.getItem(dayKey) || Object.keys(DATA)[0];
+if (!DATA[currentDay]) currentDay = Object.keys(DATA)[0];
+let layout = null;
+
+function safeJSON(s, fallback) { try { return JSON.parse(s || ''); } catch { return fallback; } }
+function saveFavs() { localStorage.setItem(favKey, JSON.stringify(favs)); }
+function eventKey(day, stage, ev) { return `${day}|${stage}|${ev.start}|${ev.artist}`; }
+function fmt(m) { m = ((m % 1440)+1440)%1440; return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'); }
+function clamp(n,a,b) { return Math.max(a, Math.min(b,n)); }
+function calcLayout() {
+  const vp = document.getElementById('viewport');
+  const w = Math.max(300, vp.clientWidth || window.innerWidth);
+  const pad = 4;
+  const gap = w < 380 ? 4 : 5;
+  const timeW = w < 380 ? 40 : 46;
+  const stageW = Math.max(58, (w - timeW - pad*2 - gap*4) / 4);
+  const pxMin = w < 380 ? 2.18 : 2.28;
+  const height = (endMin-startMin)*pxMin + 14;
+  return {w,pad,gap,timeW,stageW,pxMin,height};
+}
+function yFor(min) { return (min - startMin) * layout.pxMin; }
+function initDays() {
+  const days = document.getElementById('days');
+  days.innerHTML = '';
+  for (const d of Object.keys(DATA)) {
+    const b = document.createElement('button');
+    b.className = 'dayBtn';
+    b.type = 'button';
+    b.dataset.day = d;
+    b.textContent = DATA[d].title.replace('JEUDI ', 'JEU ').replace('VENDREDI ', 'VEN ').replace('SAMEDI ', 'SAM ');
+    b.onclick = () => { currentDay = d; localStorage.setItem(dayKey,d); render(false); };
+    days.appendChild(b);
+  }
+}
+function renderHeaders() {
+  const head = document.getElementById('stageHeaders');
+  head.style.gridTemplateColumns = `${layout.timeW}px repeat(4, minmax(0, 1fr))`;
+  head.style.paddingLeft = `${layout.pad}px`;
+  head.style.paddingRight = `${layout.pad}px`;
+  head.innerHTML = '<div class="timeHead"></div>';
+  for (const st of STAGES) {
+    const div = document.createElement('div');
+    div.className = 'stageHead';
+    div.style.background = COLORS[st].header;
+    div.textContent = st.toUpperCase();
+    head.appendChild(div);
+  }
+}
+function render(keepScroll=true) {
+  const vp = document.getElementById('viewport');
+  const oldTop = vp.scrollTop;
+  layout = calcLayout();
+  renderHeaders();
+  document.querySelectorAll('.dayBtn').forEach(b => b.classList.toggle('active', b.dataset.day === currentDay));
+  document.getElementById('favOnlyBtn').classList.toggle('active', favOnly);
+  const tl = document.getElementById('timeline');
+  tl.style.height = `${layout.height}px`;
+  tl.innerHTML = '';
+  const gridLeft = layout.pad + layout.timeW + layout.gap;
+  const gridRight = layout.w - layout.pad;
+  for (let h = startMin; h <= endMin; h += 60) {
+    const y = yFor(h);
+    const lab = document.createElement('div');
+    lab.className = 'timeLabel';
+    lab.style.left = `${layout.pad}px`;
+    lab.style.width = `${layout.timeW - 4}px`;
+    lab.style.top = `${y}px`;
+    lab.textContent = fmt(h);
+    tl.appendChild(lab);
+    const line = document.createElement('div');
+    line.className = 'hourLine';
+    line.style.left = `${gridLeft}px`;
+    line.style.top = `${y}px`;
+    line.style.width = `${gridRight-gridLeft}px`;
+    tl.appendChild(line);
+    if (h < endMin) {
+      const half = document.createElement('div');
+      half.className = 'halfLine';
+      half.style.left = `${gridLeft}px`;
+      half.style.top = `${yFor(h+30)}px`;
+      half.style.width = `${gridRight-gridLeft}px`;
+      tl.appendChild(half);
+    }
+  }
+  STAGES.forEach((st, idx) => {
+    const left = layout.pad + layout.timeW + layout.gap + idx*(layout.stageW + layout.gap);
+    const bg = document.createElement('div');
+    bg.className = 'stageBg';
+    bg.style.left = `${left}px`;
+    bg.style.width = `${layout.stageW}px`;
+    bg.style.height = `${(endMin-startMin)*layout.pxMin}px`;
+    tl.appendChild(bg);
+  });
+  let shown = 0;
+  STAGES.forEach((st, idx) => {
+    const left = layout.pad + layout.timeW + layout.gap + idx*(layout.stageW + layout.gap);
+    for (const ev of DATA[currentDay].stages[st]) {
+      const k = eventKey(currentDay, st, ev);
+      const isFav = favs.includes(k);
+      if (favOnly && !isFav) continue;
+      shown++;
+      const duration = ev.emin - ev.smin;
+      const top = yFor(ev.smin) + 3;
+      const h = Math.max(32, duration*layout.pxMin - 6);
+      const div = document.createElement('div');
+      div.className = 'event' + (isFav ? ' fav' : '');
+      div.style.left = `${left + 3}px`;
+      div.style.top = `${top}px`;
+      div.style.width = `${layout.stageW - 6}px`;
+      div.style.height = `${h}px`;
+      div.style.background = COLORS[st].fill;
+      div.style.borderColor = COLORS[st].border;
+      const artistSize = clamp(layout.stageW * 0.145, 10.2, 14.5);
+      const timeSize = clamp(layout.stageW * 0.105, 8.5, 11.2);
+      const styleSize = clamp(layout.stageW * 0.095, 8.3, 10.8);
+      const hideStyle = h < 42 || layout.stageW < 63;
+      div.innerHTML = `<div class="time" style="font-size:${timeSize}px">${ev.start}–${ev.end}</div><div class="artist" style="font-size:${artistSize}px">${ev.artist}</div>${hideStyle ? '' : `<div class="style" style="font-size:${styleSize}px">[${ev.style}]</div>`}`;
+      div.onclick = () => {
+        const i = favs.indexOf(k);
+        if (i >= 0) { favs.splice(i,1); }
+        else { favs.push(k); }
+        saveFavs();
+        render(true);
+      };
+      tl.appendChild(div);
+    }
+  });
+  if (favOnly && shown === 0) {
+    const msg = document.createElement('div');
+    msg.className = 'emptyMsg';
+    msg.style.top = `${yFor(16*60)}px`;
+    msg.innerHTML = 'Aucun favori pour ce jour.<br>Désactive “Favoris only”, puis tape sur les sets à garder.';
+    tl.appendChild(msg);
+  }
+  if (!keepScroll) { vp.scrollTop = Math.max(0, yFor(15*60 + 45) - 16); }
+  else { vp.scrollTop = Math.min(oldTop, tl.offsetHeight); }
+}
+
+document.getElementById('favOnlyBtn').onclick = () => {
+  favOnly = !favOnly;
+  localStorage.setItem(favOnlyKey, favOnly ? '1' : '0');
+  render(true);
+};
+window.addEventListener('resize', () => render(true));
+window.addEventListener('orientationchange', () => setTimeout(() => render(true), 220));
+initDays();
+render(false);
+</script>
+</body>
+</html>
