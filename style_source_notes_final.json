@@ -1,0 +1,82 @@
+{
+  "AMR": {
+    "confidence": "medium-high",
+    "note": "Shotgun pages describe AMR as trancy/bouncy/eurodance/hardtrance/hardtechno."
+  },
+  "BØDRU B2B FURIOUS": {
+    "confidence": "medium",
+    "note": "BØDRU has hard techno sources; Furious appears in 158 BPM hard trance/hard groove contexts. B2B style kept broad."
+  },
+  "DICE B2B KØ:LAB": {
+    "confidence": "medium-high",
+    "note": "DICE RA bio = fast hardtrance/bouncy grooves; Kø:lab profile = techno/electronic. Broad B2B tag."
+  },
+  "DISRUPT TCHAÏ B2B VINZZ": {
+    "confidence": "low-medium",
+    "note": "Found together in techno/hardcore event context and a Dance release; not enough for finer tag."
+  },
+  "DLN": {
+    "confidence": "medium",
+    "note": "DLN/DLN MUSIC appears in hardtrance/hardgroove/hardtechno contexts."
+  },
+  "FIIKRA B2B OTAH": {
+    "confidence": "high",
+    "note": "FIIKRA says acid-only; Otah says fast paced tekno and has acid/melodic tekno tags."
+  },
+  "FLINS": {
+    "confidence": "medium",
+    "note": "The Finest Techno / SoundCloud source tags release as Techno; no stronger subgenre found."
+  },
+  "JEJEJE": {
+    "confidence": "medium",
+    "note": "UNDER/Shotgun contexts around Techno, Hard Techno, Hard Trance; no artist bio found."
+  },
+  "KARA": {
+    "confidence": "high",
+    "note": "KARA DNB / Rinse = Drum & Bass / Jungle."
+  },
+  "KSLTECH": {
+    "confidence": "high",
+    "note": "Event description explicitly says KSLTECH = Hard Techno - Indus."
+  },
+  "LE F": {
+    "confidence": "medium",
+    "note": "RA/Shotgun Atome pages list Techno/House for Le F."
+  },
+  "NOOPS": {
+    "confidence": "none",
+    "note": "No reliable matching artist source found. Set to non vérifié."
+  },
+  "PINOTELLO": {
+    "confidence": "high",
+    "note": "BKJN/Scantraxx sources identify Pinotello as Uptempo Hardcore."
+  },
+  "ROGS": {
+    "confidence": "low-medium",
+    "note": "Only event context found: electro/techno/tech house/club. No direct artist bio."
+  },
+  "RV": {
+    "confidence": "low-medium",
+    "note": "UNDER event context with RV lists hard techno/techno/trance/hard groove/hard trance. No direct artist bio found."
+  },
+  "SAMUEL MORIERO": {
+    "confidence": "high",
+    "note": "RA event bio identifies him as raw, industrial-driven hard techno."
+  },
+  "SLACKREB": {
+    "confidence": "medium",
+    "note": "Multiple local Shotgun events place Slackreb in hard trance/hard groove/neorave/hard techno contexts."
+  },
+  "SLVL B2B USH": {
+    "confidence": "high",
+    "note": "SLVL RA/Beatport = industrial hard techno; USH strongly overlaps hard techno/hard dance/hardcore; B2B tag kept as industrial hard techno."
+  },
+  "SORAÄ": {
+    "confidence": "high",
+    "note": "RA/SoundCloud/Connect'HER clearly list HardTechno, Industrial, Schranz, Hardcore, Hardstyle influences."
+  },
+  "ZAPRAVKA": {
+    "confidence": "medium-high",
+    "note": "Warehouse/Viberate context says hard techno / hard music."
+  }
+}
