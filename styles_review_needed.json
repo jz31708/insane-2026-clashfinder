@@ -1,0 +1,492 @@
+[
+  {
+    "artist": "LOWBASS",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-14",
+        "stage": "Cloud",
+        "start": "16:45",
+        "end": "17:30",
+        "artist": "LOWBASS",
+        "current_style": "bass house / electro"
+      }
+    ]
+  },
+  {
+    "artist": "TARS",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Cloud",
+        "start": "18:00",
+        "end": "19:30",
+        "artist": "TARS",
+        "current_style": "bass house / electro"
+      }
+    ]
+  },
+  {
+    "artist": "FJUSHA",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Cloud",
+        "start": "20:30",
+        "end": "22:00",
+        "artist": "FJUSHA",
+        "current_style": "house / melodic"
+      }
+    ]
+  },
+  {
+    "artist": "GA4SY",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Cloud",
+        "start": "16:00",
+        "end": "17:00",
+        "artist": "GA4SY",
+        "current_style": "house / electro"
+      }
+    ]
+  },
+  {
+    "artist": "AMR",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Cloud",
+        "start": "17:00",
+        "end": "18:00",
+        "artist": "AMR",
+        "current_style": "house"
+      }
+    ]
+  },
+  {
+    "artist": "ROGS",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Cloud",
+        "start": "16:00",
+        "end": "16:45",
+        "artist": "ROGS",
+        "current_style": "house / electro"
+      }
+    ]
+  },
+  {
+    "artist": "NOOPS",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Cloud",
+        "start": "16:45",
+        "end": "17:30",
+        "artist": "NOOPS",
+        "current_style": "house / electro"
+      }
+    ]
+  },
+  {
+    "artist": "FLINS",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Cloud",
+        "start": "17:45",
+        "end": "18:45",
+        "artist": "FLINS",
+        "current_style": "house / melodic"
+      }
+    ]
+  },
+  {
+    "artist": "LE F",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-14",
+        "stage": "Cloud",
+        "start": "16:00",
+        "end": "16:45",
+        "artist": "LE F",
+        "current_style": "house / mélodique"
+      }
+    ]
+  },
+  {
+    "artist": "DLN",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Technobus",
+        "start": "16:00",
+        "end": "17:00",
+        "artist": "DLN",
+        "current_style": "techno"
+      }
+    ]
+  },
+  {
+    "artist": "JEJEJE",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Technobus",
+        "start": "17:00",
+        "end": "18:00",
+        "artist": "JEJEJE",
+        "current_style": "techno"
+      }
+    ]
+  },
+  {
+    "artist": "KLÖSS",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Technobus",
+        "start": "22:30",
+        "end": "23:30",
+        "artist": "KLÖSS",
+        "current_style": "techno"
+      }
+    ]
+  },
+  {
+    "artist": "KEUSS",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Technobus",
+        "start": "20:30",
+        "end": "21:30",
+        "artist": "KEUSS",
+        "current_style": "techno"
+      }
+    ]
+  },
+  {
+    "artist": "RV",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "Technobus",
+        "start": "19:30",
+        "end": "20:30",
+        "artist": "RV",
+        "current_style": "techno"
+      }
+    ]
+  },
+  {
+    "artist": "KSLTECH",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Technobus",
+        "start": "19:00",
+        "end": "20:30",
+        "artist": "KSLTECH",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "SLACKREB",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Technobus",
+        "start": "20:30",
+        "end": "21:30",
+        "artist": "SLACKREB",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "ZAPRAVKA",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Mirage",
+        "start": "20:00",
+        "end": "21:00",
+        "artist": "ZAPRAVKA",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "RDØ",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Mirage",
+        "start": "00:00",
+        "end": "01:00",
+        "artist": "RDØ",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "TODIEFOR",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Mirage",
+        "start": "21:00",
+        "end": "22:00",
+        "artist": "TODIEFOR",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "SAMUEL MORIERO",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Mirage",
+        "start": "18:00",
+        "end": "19:00",
+        "artist": "SAMUEL MORIERO",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "KLOFAMA",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Mirage",
+        "start": "22:00",
+        "end": "23:00",
+        "artist": "KLOFAMA",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "SLVL B2B USH",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Mirage",
+        "start": "23:00",
+        "end": "00:00",
+        "artist": "SLVL B2B USH",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "BØDRU B2B FURIOUS",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Technobus",
+        "start": "21:30",
+        "end": "23:00",
+        "artist": "BØDRU B2B FURIOUS",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "DISRUPT TCHAÏ B2B VINZZ",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "Technobus",
+        "start": "23:00",
+        "end": "00:30",
+        "artist": "DISRUPT TCHAÏ B2B VINZZ",
+        "current_style": "hard techno / rave"
+      }
+    ]
+  },
+  {
+    "artist": "C-JOO B2B DNA",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "ALT F4",
+        "start": "16:00",
+        "end": "17:00",
+        "artist": "C-JOO B2B DNA",
+        "current_style": "bass music"
+      }
+    ]
+  },
+  {
+    "artist": "FIIKRA B2B OTAH",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "ALT F4",
+        "start": "14:00",
+        "end": "15:00",
+        "artist": "FIIKRA B2B OTAH",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "PINOTELLO",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "ALT F4",
+        "start": "15:00",
+        "end": "16:00",
+        "artist": "PINOTELLO",
+        "current_style": "bass music"
+      }
+    ]
+  },
+  {
+    "artist": "SORAÄ",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "ALT F4",
+        "start": "13:00",
+        "end": "14:00",
+        "artist": "SORAÄ",
+        "current_style": "hard techno"
+      }
+    ]
+  },
+  {
+    "artist": "KARA",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "ALT F4",
+        "start": "17:00",
+        "end": "18:00",
+        "artist": "KARA",
+        "current_style": "bass music"
+      }
+    ]
+  },
+  {
+    "artist": "ZOREL",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-16",
+        "stage": "ALT F4",
+        "start": "23:00",
+        "end": "00:00",
+        "artist": "ZOREL",
+        "current_style": "drum & bass"
+      }
+    ]
+  },
+  {
+    "artist": "THEEZER",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "ALT F4",
+        "start": "23:00",
+        "end": "00:00",
+        "artist": "THEEZER",
+        "current_style": "drum & bass"
+      }
+    ]
+  },
+  {
+    "artist": "VICI",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "ALT F4",
+        "start": "22:00",
+        "end": "23:00",
+        "artist": "VICI",
+        "current_style": "drum & bass"
+      }
+    ]
+  },
+  {
+    "artist": "OBSES",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "ALT F4",
+        "start": "16:00",
+        "end": "17:00",
+        "artist": "OBSES",
+        "current_style": "drum & bass"
+      }
+    ]
+  },
+  {
+    "artist": "DICE B2B KØ:LAB",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "ALT F4",
+        "start": "13:00",
+        "end": "14:00",
+        "artist": "DICE B2B KØ:LAB",
+        "current_style": "drum & bass"
+      }
+    ]
+  },
+  {
+    "artist": "VERNEX B2B SANDY WAREZ",
+    "found": true,
+    "occurrences": [
+      {
+        "date": "2026-05-15",
+        "stage": "ALT F4",
+        "start": "15:00",
+        "end": "16:00",
+        "artist": "VERNEX B2B SANDY WAREZ",
+        "current_style": "drum & bass"
+      }
+    ]
+  }
+]
